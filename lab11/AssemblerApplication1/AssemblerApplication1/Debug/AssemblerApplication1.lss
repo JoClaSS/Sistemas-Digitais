@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab10\lab10\main.asm Tue Apr 16 00:36:18 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Mon Apr 15 11:26:19 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab10\lab10\main.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm(9): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab10\lab10\main.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm(9): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
                                  
                                  ;
                                  
@@ -987,11 +987,12 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab10\lab10\main.asm(8): Includ
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; lab10.asm
+                                 ; AssemblerApplication1.asm
                                  ;
-                                 ; Created: 10/04/2019 16:52:37
+                                 ; Created: 14/04/2019 22:15:37
                                  ; Author : JosÃ©
                                  ;
+                                 
                                  
                                  .include "m328Pdef.inc"
                                  
@@ -1040,45 +1041,23 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab10\lab10\main.asm(8): Includ
                                  .org 0x000
 000000 c000                      rjmp main
                                  
+                                 
                                  main: 
-000001 ef0f                       ldi R16, 0xFF
-000002 b904                       out DDRB, R16
-000003 b90a                       out DDRD, R16
-                                 
-                                 loop:			;0b76543210			
-000004 982a                       cbi portB,2
-000005 e108                       ldi R16,0x18   ;0b00011000
-000006 b90b                       out portD,R16
-000007 9a2c                       sbi portB,4
-000008 d00d                       rcall delay
-000009 982c                       cbi portB,4
-00000a e60c                       ldi R16,0x6C
-00000b b90b                       out portD,R16  ;0b01101100
-00000c e009                       ldi R16,0x09   ;0b00001001
-00000d b905                       out portB,R16
-00000e d007                       rcall delay
-00000f 982b                       cbi portB,3
-000010 e908                       ldi R16,0x98   ;0b10011000
-000011 b90b                       out portD,R16
-000012 9a2a                       sbi portB,2
-000013 d002                       rcall delay
-000014 9828                       cbi portB,0
-000015 cfee                       rjmp loop
+000001 9a25                        sbi DDRB,5
                                  
                                  
-                                  delay:
-000016 2700                       clr R16
-000017 2711                       clr R17
-000018 e624                       ldi R18,100
+                                 loop:
+000002 2700                        clr R16
+000003 b90a                        out DDRD,R16  
+000004 b119                        in R17,PIND   ;0b10000000
+000005 3810                        cpi R17, 0x80 ;porta 3
+000006 f009                        breq ON
+000007 cffa                        rjmp loop      
                                  
-                                  delayloop:
-000019 950a                        dec R16
-00001a f7f1                        brne delayloop
-00001b 951a                        dec R17
-00001c f7e1                        brne delayloop
-00001d 952a                        dec R18
-00001e f7d1                        brne delayloop
-00001f 9508                        ret
+                                 
+                                 ON:
+000008 9a2d                       sbi PORTB,5
+000009 cff8                       rjmp loop
 
 
 RESOURCE USE INFORMATION
@@ -1098,37 +1077,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  13 r17:   2 r18:   2 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:   2 r17:   2 r18:   0 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 3 out of 35 (8.6%)
+Registers used: 2 out of 35 (5.7%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   4 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
+brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   6 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   1 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   0 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   6 pop   :   0 
-push  :   0 rcall :   3 ret   :   1 reti  :   0 rjmp  :   2 rol   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   1 pop   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   3 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 7 out of 113 (6.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000040     64      0     64   32768   0.2%
+[.cseg] 0x000000 0x000014     20      0     20   32768   0.1%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
