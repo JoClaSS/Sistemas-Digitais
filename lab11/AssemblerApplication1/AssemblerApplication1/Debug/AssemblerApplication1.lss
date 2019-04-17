@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 16:31:04 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 17:39:59 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
 C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm(1): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
@@ -1032,9 +1032,6 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\Ass
                                  ; ***** END OF FILE ******************************************************
                                  .org 0x0000
 000000 c000                      rjmp main
-                                 
-                                 
-                                 
                                  main:
 000001 9a25                         sbi DDRB,5
 000002 e005                         ldi R16, 0b00000101
@@ -1043,50 +1040,93 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\Ass
 000005 bd04                         out TCCR0A, R16        ;CTC
 000006 ef0f                         ldi R16, 0b11111111
 000007 bd07                         out OCR0A, R16
+000008 2700                         clr R16
                                  
                                  press:
-000008 b103                          in R16,PINB
-000009 7001                        andi R16,0x01 ;mask to 0b0000001 
-00000a 3001                         cpi R16,0x01 
-00000b f039                        breq ON_RED
-00000c 7002                        andi R16,0x02
-00000d 3002                         cpi R16,0x02
-00000e f049                        breq ON_GREEN
-00000f 7004                        andi R16,0x04
-000010 3004                         cpi R16,0x04
-000011 f059                        breq ON_BLUE
-000012 cff5                        rjmp press
+000009 3004                          cpi R16,0x04
+00000a f1d9                      	breq RESULTADO
+00000b b143                          in R20,PINB
+00000c 7041                        andi R20,0x01			 ;mask to 0b0000001 
+00000d 3041                         cpi R20,0x01 
+00000e f049                        breq ON_RED
+00000f b143                          in R20,PINB
+000010 7042                        andi R20,0x02
+000011 3042                         cpi R20,0x02
+000012 f091                        breq ON_GREEN
+000013 b143                          in R20,PINB
+000014 7044                        andi R20,0x04
+000015 3044                         cpi R20,0x04
+000016 f0c1                        breq ON_BLUE
+000017 cff1                        rjmp press
                                  
                                  ON_RED:
-000013 9a2d                       sbi portB,5
-000014 d00d                       rcall delay
-000015 982d                       cbi portB,5
-000016 d00b                       rcall delay
-000017 cff0                       rjmp press
+000018 9a2d                       sbi portB,5
+000019 d020                       rcall delay
+00001a 982d                       cbi portB,5
+00001b d01e                       rcall delay
+00001c 9503                        inc R16
+00001d 2f50                        mov R21,R16
+00001e 7051                       andi R21,0x01
+00001f 3051                        cpi R21,0x01
+000020 f119                       breq CORRETO
+000021 7053                       andi R21,0x03
+000022 3053                        cpi R21,0x03
+000023 f101                       breq CORRETO
+000024 cfe4                       rjmp press
                                  
                                  ON_GREEN:
-000018 9a2d                       sbi portB,5
-000019 d008                       rcall delay
-00001a 982d                       cbi portB,5
-00001b d006                       rcall delay
-00001c cfeb                       rjmp press
+000025 9a2d                       sbi portB,5
+000026 d013                       rcall delay
+000027 982d                       cbi portB,5
+000028 d011                       rcall delay
+000029 9503                        inc R16
+00002a 2f50                        mov R21,R16
+00002b 7052                       andi R21,0x02
+00002c 3052                        cpi R21,0x02
+00002d f0b1                       breq CORRETO
+00002e cfda                       rjmp press
                                  
                                  ON_BLUE:
-00001d 9a2d                       sbi portB,5
-00001e d003                       rcall delay
-00001f 982d                       cbi portB,5
-000020 d001                       rcall delay
-000021 cfe6                       rjmp press
+00002f 9503                       inc R16
+000030 9a2d                       sbi portB,5
+000031 d008                       rcall delay
+000032 982d                       cbi portB,5
+000033 d006                       rcall delay
+000034 9503                       inc R16
+000035 2f50                       mov R21,R16
+000036 7054                       andi R21,0x04
+000037 3054                       cpi R21,0x04
+000038 f059                       breq CORRETO
+000039 cfcf                       rjmp press
                                  
                                  delay:
-000022 e614                       ldi R17,100
+00003a 2722                       clr R18
+00003b 2733                       clr R19
+00003c e614                       ldi R17,100
                                  delay_loop:
-000023 953a                       dec R19
-000024 f7f1                       brne delay_loop
-000025 952a                       dec R18
-000026 f7e1                       brne delay_loop
-000027 951a                       dec R17
-000028 f7d1                       brne delay_loop
+00003d 953a                       dec R19
+00003e f7f1                       brne delay_loop
+00003f 952a                       dec R18
+000040 f7e1                       brne delay_loop
+000041 951a                       dec R17
+000042 f7d1                       brne delay_loop
+000043 9508                       ret 
+                                 
+                                  CORRETO:
+000044 9563                        inc R22
+000045 cfc3                        rjmp press
+                                 
+                                  RESULTADO:
+000046 3064                        cpi R22,0x04
+000047 f019                        breq ABRIR
+                                  FAIL:
+000048 2700                        clr R16
+000049 2766                        clr R22
+00004a cfbe                       rjmp press
+                                 
+                                 ABRIR:
+00004b 9a2d                       sbi portB,5
+00004c cfbc                       rjmp press
 
 
 RESOURCE USE INFORMATION
@@ -1106,37 +1146,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  13 r17:   2 r18:   1 r19:   1 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  16 r17:   2 r18:   2 r19:   2 r20:   9 
+r21:  11 r22:   3 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 4 out of 35 (11.4%)
+Registers used: 7 out of 35 (20.0%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
-andi  :   3 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   3 brge  :   0 brhc  :   0 
+andi  :   7 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   9 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   3 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   5 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   3 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
+cpi   :   9 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   5 jmp   :   0 
 ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+lsr   :   0 mov   :   3 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   0 
-push  :   0 rcall :   6 ret   :   1 reti  :   0 rjmp  :   5 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   4 sbic  :   0 sbis  :   0 
+push  :   0 rcall :   6 ret   :   1 reti  :   0 rjmp  :   8 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   5 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 13 out of 113 (11.5%)
+Instructions used: 16 out of 113 (14.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000054     84      0     84   32768   0.3%
+[.cseg] 0x000000 0x00009a    154      0    154   32768   0.5%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
