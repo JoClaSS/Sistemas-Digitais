@@ -16,13 +16,14 @@ main:
 
 loop:			;0b76543210			
  cbi portB,2
- ldi R16,0x18   ;0b00011000
+ ldi R16,0x18   ;0b01101100
  out portD,R16
- sbi portB,4
+ ldi R16, 0b
+ out portB,4
  rcall delay
  cbi portB,4
- ldi R16,0x6C
- out portD,R16  ;0b01101100
+ ldi R16,0xFC
+ out portD,R16  ;0b11111100
  ldi R16,0x09   ;0b00001001
  out portB,R16
  rcall delay
@@ -38,13 +39,9 @@ loop:			;0b76543210
  delay:
  clr R16
  clr R17
- ldi R18,100
+ ldi R18,1
 
  delayloop:
   dec R16
-  brne delayloop
-  dec R17
-  brne delayloop
-  dec R18
   brne delayloop
   ret

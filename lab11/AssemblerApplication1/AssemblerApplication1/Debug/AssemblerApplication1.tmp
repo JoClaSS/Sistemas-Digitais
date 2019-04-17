@@ -10,7 +10,6 @@
  <SOURCE_FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc</FILE>
-  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc</FILE>
  </INCLUDED_FILES>
  <OBJECT_FILES>
   <FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\Debug\AssemblerApplication1.obj</FILE>
@@ -23,8 +22,8 @@
   <FILE>AssemblerApplication1.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <main><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>14</LINE></main>
-  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>18</LINE></loop>
-  <ON><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>27</LINE></ON>
+  <main><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>5</LINE></main>
+  <press><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>8</LINE></press>
+  <ON><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>16</LINE></ON>
  </LABELS>
 </ASSEMBLER_INFO>
