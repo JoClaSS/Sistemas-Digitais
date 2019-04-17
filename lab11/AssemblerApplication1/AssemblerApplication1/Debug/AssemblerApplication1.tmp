@@ -22,8 +22,12 @@
   <FILE>AssemblerApplication1.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <main><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>5</LINE></main>
-  <press><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>8</LINE></press>
-  <ON><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>16</LINE></ON>
+  <main><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>7</LINE></main>
+  <press><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>16</LINE></press>
+  <ON_RED><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>29</LINE></ON_RED>
+  <ON_GREEN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>36</LINE></ON_GREEN>
+  <ON_BLUE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>43</LINE></ON_BLUE>
+  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>50</LINE></delay>
+  <delay_loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>52</LINE></delay_loop>
  </LABELS>
 </ASSEMBLER_INFO>

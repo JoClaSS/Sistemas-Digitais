@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 15:13:04 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 16:31:04 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
 C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm(1): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
@@ -1033,21 +1033,60 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\Ass
                                  .org 0x0000
 000000 c000                      rjmp main
                                  
+                                 
+                                 
                                  main:
 000001 9a25                         sbi DDRB,5
+000002 e005                         ldi R16, 0b00000101
+000003 bd05                         out TCCR0B, R16        ;prescale clk/1024
+000004 e002                         ldi R16, 0b00000010		
+000005 bd04                         out TCCR0A, R16        ;CTC
+000006 ef0f                         ldi R16, 0b11111111
+000007 bd07                         out OCR0A, R16
                                  
                                  press:
-000002 2700                         clr R16
-000003 b103                          in R16,PINB
-000004 7001                        andi R16,0x01 
-000005 3001                         cpi R16,0x01 
-000006 f009                        breq ON
-000007 cffa                        rjmp press
+000008 b103                          in R16,PINB
+000009 7001                        andi R16,0x01 ;mask to 0b0000001 
+00000a 3001                         cpi R16,0x01 
+00000b f039                        breq ON_RED
+00000c 7002                        andi R16,0x02
+00000d 3002                         cpi R16,0x02
+00000e f049                        breq ON_GREEN
+00000f 7004                        andi R16,0x04
+000010 3004                         cpi R16,0x04
+000011 f059                        breq ON_BLUE
+000012 cff5                        rjmp press
                                  
-                                 ON:
-000008 9a2d                       sbi portB,5
-000009 cff8                       rjmp press
+                                 ON_RED:
+000013 9a2d                       sbi portB,5
+000014 d00d                       rcall delay
+000015 982d                       cbi portB,5
+000016 d00b                       rcall delay
+000017 cff0                       rjmp press
                                  
+                                 ON_GREEN:
+000018 9a2d                       sbi portB,5
+000019 d008                       rcall delay
+00001a 982d                       cbi portB,5
+00001b d006                       rcall delay
+00001c cfeb                       rjmp press
+                                 
+                                 ON_BLUE:
+00001d 9a2d                       sbi portB,5
+00001e d003                       rcall delay
+00001f 982d                       cbi portB,5
+000020 d001                       rcall delay
+000021 cfe6                       rjmp press
+                                 
+                                 delay:
+000022 e614                       ldi R17,100
+                                 delay_loop:
+000023 953a                       dec R19
+000024 f7f1                       brne delay_loop
+000025 952a                       dec R18
+000026 f7e1                       brne delay_loop
+000027 951a                       dec R17
+000028 f7d1                       brne delay_loop
 
 
 RESOURCE USE INFORMATION
@@ -1067,37 +1106,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   4 r17:   0 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  13 r17:   2 r18:   1 r19:   1 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 1 out of 35 (2.9%)
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
-andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
+andi  :   3 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   3 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
+brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   3 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   1 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+cpi   :   3 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   0 lds   :   0 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   0 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   3 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 sbis  :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   0 
+push  :   0 rcall :   6 ret   :   1 reti  :   0 rjmp  :   5 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   4 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 7 out of 113 (6.2%)
+Instructions used: 13 out of 113 (11.5%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000014     20      0     20   32768   0.1%
+[.cseg] 0x000000 0x000054     84      0     84   32768   0.3%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

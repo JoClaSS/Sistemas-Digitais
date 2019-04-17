@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 15:13:04 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm Wed Apr 17 16:31:04 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -696,5 +696,9 @@ EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
 CSEG main         00000001
-CSEG press        00000002
-CSEG ON           00000008
+CSEG press        00000008
+CSEG ON_RED       00000013
+CSEG ON_GREEN     00000018
+CSEG ON_BLUE      0000001d
+CSEG delay        00000022
+CSEG delay_loop   00000023

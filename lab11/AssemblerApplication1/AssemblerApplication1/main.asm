@@ -30,16 +30,30 @@ ON_RED:
  sbi portB,5
  rcall delay
  cbi portB,5
+ rcall delay
  rjmp press
 
 ON_GREEN:
  sbi portB,5
  rcall delay
  cbi portB,5
+ rcall delay
  rjmp press
 
 ON_BLUE:
  sbi portB,5
  rcall delay
  cbi portB,5
+ rcall delay
  rjmp press
+
+delay:
+ ldi R17,100
+delay_loop:
+ dec R19
+ brne delay_loop
+ dec R18
+ brne delay_loop
+ dec R17
+ brne delay_loop
+ ret 
