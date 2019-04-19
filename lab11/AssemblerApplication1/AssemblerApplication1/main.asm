@@ -1,98 +1,97 @@
 .include "m328pdef.inc"
 .org 0x0000
-rjmp main
-main:
-   sbi DDRB,5
-   ldi R16, 0b00000101
-   out TCCR0B, R16        ;prescale clk/1024
-   ldi R16, 0b00000010		
-   out TCCR0A, R16        ;CTC
-   ldi R16, 0b11111111
-   out OCR0A, R16
-   clr R16
+rjmp MAIN
+ 
 
-press:
-    cpi R16,0x04
-	breq RESULTADO
-    in R20,PINB
-  andi R20,0x01			 ;mask to 0b0000001 
-   cpi R20,0x01 
-  breq ON_RED
-    in R20,PINB
-  andi R20,0x02
+ MAIN: 
+ ldi R16,0x1C ;0b 0001 1100
+ out DDRD,R16
+ clr R16
+ clr R20
+ clr R21
+
+ PRESS:
+  cpi R20,0x04
+  breq RESULTADO
+  in R16,PINB    ; 0000 0100
+  andi R16,0x04
+  cpi R16,0x04
+  breq RED
+  in R17,PINB     ;0000 0010
+  andi R17,0x02
+  cpi R17,0x02
+  breq GREEN 
+  in R18,PINB     ;0000 0001
+  andi R18,0x01
+  cpi R18,0x01
+  breq BLUE
+  rjmp PRESS
+
+  RED:
+   sbi PORTD,2
+   rcall delay
+   cbi PORTD,2
+   rcall delay
+   inc R20
+   cpi R20,0x01
+   breq CORRETO
+   cpi R20,0x03
+   breq CORRETO
+   rjmp press
+
+  GREEN:
+   sbi PORTD,3
+   rcall DELAY
+   cbi PORTD,3
+   rcall DELAY
+   inc R20
    cpi R20,0x02
-  breq ON_GREEN
-    in R20,PINB
-  andi R20,0x04
+   breq CORRETO
+   rjmp PRESS
+
+   BLUE:
+   sbi PORTD,4
+   rcall DELAY
+   cbi PORTD,4
+   rcall DELAY
+   inc R20
    cpi R20,0x04
-  breq ON_BLUE
-  rjmp press
+   breq CORRETO
+   rjmp PRESS
 
-ON_RED:
- sbi portB,5
- rcall delay
- cbi portB,5
- rcall delay
-  inc R16
-  mov R21,R16
- andi R21,0x01
-  cpi R21,0x01
- breq CORRETO
- andi R21,0x03
-  cpi R21,0x03
- breq CORRETO
- rjmp press
+   CORRETO:
+    inc R21
+	rjmp PRESS
 
-ON_GREEN:
- sbi portB,5
- rcall delay
- cbi portB,5
- rcall delay
-  inc R16
-  mov R21,R16
- andi R21,0x02
-  cpi R21,0x02
- breq CORRETO
- rjmp press
+	RESULTADO:
+	 cpi R21,0x04
+	 breq ABRIR
+	FAIL:
+	 sbi PORTD,2
+	 rcall DELAY
+	 cbi PORTD,2
+	 sbi PORTD,3
+	 rcall DELAY
+	 cbi PORTD,3
+	 sbi PORTD,4
+	 rcall DELAY
+	 cbi PORTD,4
+	 rjmp MAIN
 
-ON_BLUE:
- inc R16
- sbi portB,5
- rcall delay
- cbi portB,5
- rcall delay
- inc R16
- mov R21,R16
- andi R21,0x04
- cpi R21,0x04
- breq CORRETO
- rjmp press
+	ABRIR:
+	  ldi R21,0xFF
+	  out PORTD,R21
+	LOOP:
+	 RJMP LOOP
 
-delay:
- clr R18
- clr R19
- ldi R17,100
-delay_loop:
- dec R19
- brne delay_loop
- dec R18
- brne delay_loop
- dec R17
- brne delay_loop
- ret 
+	 DELAY:
+	 ldi R24, 100
 
- CORRETO:
-  inc R22
-  rjmp press
-
- RESULTADO:
-  cpi R22,0x04
-  breq ABRIR
- FAIL:
-  clr R16
-  clr R22
- rjmp press
-
-ABRIR:
- sbi portB,5
- rjmp press
+	 DELAYLOOP:
+	 dec R22
+	 brne DELAYLOOP
+	 dec R23
+	 brne DELAYLOOP
+     dec R24
+	 brne DELAYLOOP
+	 ret
