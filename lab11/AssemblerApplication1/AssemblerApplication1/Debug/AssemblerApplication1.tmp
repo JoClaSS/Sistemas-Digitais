@@ -23,16 +23,17 @@
  </OUTPUT_FILES>
  <LABELS>
   <MAIN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>6</LINE></MAIN>
-  <DELAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>102</LINE></DELAY>
-  <PRESS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>28</LINE></PRESS>
-  <RESULTADO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>81</LINE></RESULTADO>
-  <RED><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>45</LINE></RED>
-  <GREEN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>57</LINE></GREEN>
-  <BLUE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>67</LINE></BLUE>
-  <CORRETO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>77</LINE></CORRETO>
-  <ABRIR><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>96</LINE></ABRIR>
-  <FAIL><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>84</LINE></FAIL>
-  <LOOP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>99</LINE></LOOP>
-  <DELAYLOOP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>107</LINE></DELAYLOOP>
+  <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>24</LINE></WAIT>
+  <DELAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>107</LINE></DELAY>
+  <PRESS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>33</LINE></PRESS>
+  <RESULTADO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>86</LINE></RESULTADO>
+  <RED><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>50</LINE></RED>
+  <GREEN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>62</LINE></GREEN>
+  <BLUE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>72</LINE></BLUE>
+  <CORRETO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>82</LINE></CORRETO>
+  <ABRIR><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>101</LINE></ABRIR>
+  <FAIL><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>89</LINE></FAIL>
+  <LOOP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>104</LINE></LOOP>
+  <DELAYLOOP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>112</LINE></DELAYLOOP>
  </LABELS>
 </ASSEMBLER_INFO>

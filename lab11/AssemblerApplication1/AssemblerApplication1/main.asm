@@ -17,22 +17,27 @@ rjmp MAIN
  ldi R16,0x1C
  out PORTD,R16
  clr R16
- out TCNT0,R16
  clr R20
  clr R21
- clr R28
- rcall DELAY
- out PORTD,R16
+ sts TCNT0,R16
 
-
- PRESS:
-  cpi R20,0x04
-  breq RESULTADO
-  in R16,PINB    ; 0000 0100
+ WAIT:
+  in R16,PINB
   andi R16,0x04
   cpi R16,0x04
+  brne WAIT
+  out PORTD,R20
+  clr R16
+  rcall DELAY
+
+ PRESS:
+   cpi R20,0x04
+  breq RESULTADO
+    in R16,PINB    ; 0000 0100
+  andi R16,0x04
+   cpi R16,0x04
   breq RED
-  in R17,PINB     ;0000 0010
+    in R17,PINB     ;0000 0010
   andi R17,0x02
    cpi R17,0x02
   breq GREEN 
@@ -112,4 +117,4 @@ rjmp MAIN
      dec R24
 	 brne DELAYLOOP
 	 ret
-	
+	 
