@@ -1,14 +1,29 @@
 .include "m328pdef.inc"
-.org 0x0000
+.org 0x0000 
 rjmp MAIN
- 
 
+ 
  MAIN: 
- ldi R16,0x1C ;0b 0001 1100
+ ldi R16,0x1C               ;0b 0001 1100
  out DDRD,R16
+ LDI R16, 0b00000101        ;clk/1024 
+ OUT TCCR0B, R16
+ LDI R16, 0b00000010		;CTC
+ OUT TCCR0A, R16
+ LDI R16, 0xFF
+ OUT OCR0A, R16
+ ldi R16,0x01
+ sts TIMSK0,R16
+ ldi R16,0x1C
+ out PORTD,R16
  clr R16
+ out TCNT0,R16
  clr R20
  clr R21
+ clr R28
+ rcall DELAY
+ out PORTD,R16
+
 
  PRESS:
   cpi R20,0x04
@@ -19,25 +34,25 @@ rjmp MAIN
   breq RED
   in R17,PINB     ;0000 0010
   andi R17,0x02
-  cpi R17,0x02
+   cpi R17,0x02
   breq GREEN 
-  in R18,PINB     ;0000 0001
+    in R18,PINB     ;0000 0001
   andi R18,0x01
-  cpi R18,0x01
+   cpi R18,0x01
   breq BLUE
   rjmp PRESS
 
   RED:
-   sbi PORTD,2
+     sbi PORTD,2
    rcall delay
-   cbi PORTD,2
+     cbi PORTD,2
    rcall delay
-   inc R20
-   cpi R20,0x01
-   breq CORRETO
-   cpi R20,0x03
-   breq CORRETO
-   rjmp press
+     inc R20
+     cpi R20,0x01
+    breq CORRETO
+     cpi R20,0x03
+    breq CORRETO
+    rjmp press
 
   GREEN:
    sbi PORTD,3
@@ -86,6 +101,8 @@ rjmp MAIN
 
 	 DELAY:
 	 ldi R24, 100
+	 clr R22
+	 clr R23
 
 	 DELAYLOOP:
 	 dec R22
@@ -95,3 +112,4 @@ rjmp MAIN
      dec R24
 	 brne DELAYLOOP
 	 ret
+	
