@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Mon Apr 29 23:00:20 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Mon Apr 29 23:33:11 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
 C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
@@ -1043,7 +1043,7 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(8): 
                                  MAIN:
 000001 e000                        ldi R16,0x00
 000002 b907                        out DDRC,R16
-000003 e10e                        ldi R16,0x1E ; 0001 1110
+000003 e00f                        ldi R16,0x0F ; 0001 1110
 000004 b904                        out DDRB,R16 
 000005 ec00                        ldi R16,0b011000000
 000006 9300 007c                   sts ADMUX,R16
@@ -1058,38 +1058,38 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(8): 
 00000d fef4                        sbrs R15,4
 00000e cffc                        rjmp WAIT
                                  
-00000f 9100 0079                   lds R16,ADCH
+00000f 9120 0079                   lds R18,ADCH
 000011 9110 0078                   lds R17,ADCL
                                  
                                    THRESHOLDS:
 000013 3312                        cpi R17,50
 000014 f038                        brlo ONLED1
 000015 3614                        cpi R17,100
-000016 f040                        brlo ONLED12
+000016 f041                        breq ONLED12
 000017 3916                        cpi R17,150
-000018 f048                        brlo ONLED123
+000018 f049                        breq ONLED123
 000019 3e16                        cpi R17,230
-00001a f050                        brlo ONLED1234
+00001a f051                        breq ONLED1234
 00001b cfec                        rjmp READ
                                    
                                    ONLED1:
-00001c e022                         ldi R18,0x02  ;0000 0010
-00001d b925                         out PORTB,R18
+00001c e031                         ldi R19,0x01  ;0000 0010
+00001d b935                         out PORTB,R19
 00001e cfe9                        rjmp READ
                                  
                                    ONLED12:
-00001f e026                         ldi R18,0x06  ;0000 0110
-000020 b925                         out PORTB,R18
+00001f e033                         ldi R19,0x03  ;0000 0110
+000020 b935                         out PORTB,R19
 000021 cfe6                        rjmp READ
                                  
                                     ONLED123:
-000022 e02e                         ldi R18,0x0E  ;0000 1110
-000023 b925                         out PORTB,R18
+000022 e037                         ldi R19,0x07  ;0000 1110
+000023 b935                         out PORTB,R19
 000024 cfe3                        rjmp READ
                                  
                                     ONLED1234:
-000025 e12e                         ldi R18,0x1E  ;0000 0110
-000026 b925                         out PORTB,R18
+000025 e03f                         ldi R19,0x0F  ;0001 1110
+000026 b935                         out PORTB,R19
 000027 cfe0                        rjmp READ
                                       
                                  
@@ -1113,16 +1113,16 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   2 r16:   9 r17:   5 r18:   8 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   2 r16:   8 r17:   5 r18:   1 r19:   8 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 4 out of 35 (11.4%)
+Registers used: 5 out of 35 (14.3%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   4 brlt  :   0 brmi  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   3 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
@@ -1138,7 +1138,7 @@ sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   2 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 8 out of 113 (7.1%)
+Instructions used: 9 out of 113 (8.0%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
