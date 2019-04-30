@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Tue Apr 23 01:14:14 2019
+AVRASM ver. 2.2.7  C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Mon Apr 29 23:00:20 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(8): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
                                  
                                  ;
                                  
@@ -992,6 +992,7 @@ C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): 
                                  ; Created: 23/04/2019 00:25:28
                                  ; Author : Jos√©
                                  ;
+                                 
                                  .INCLUDE "m328Pdef.inc"
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
@@ -1036,126 +1037,63 @@ C:\Users\JosÈ\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): 
                                  #endif  /* _M328PDEF_INC_ */
                                  
                                  ; ***** END OF FILE ******************************************************
+                                 .org 0x0000
+000000 c000                      rjmp MAIN
                                  
-                                 ;.ORG   0x0000                  // Tells the next instruction to be written
-                                 ;RJMP   SETUP                    // State that the program begins at the main label
+                                 MAIN:
+000001 e000                        ldi R16,0x00
+000002 b907                        out DDRC,R16
+000003 e10e                        ldi R16,0x1E ; 0001 1110
+000004 b904                        out DDRB,R16 
+000005 ec00                        ldi R16,0b011000000
+000006 9300 007c                   sts ADMUX,R16
+                                   
+                                  
+                                   READ:
+000008 ec07                        ldi R16,0b11000111
+000009 9300 007a                   sts ADCSRA,R16
                                  
-                                 SETUP:
-                                 ;;; ENTRADAS E SA√çDAS - DEFINES
-000000 e002                      LDI R16, 0x02               
-000001 b904                      OUT DDRB, R16               
+                                   WAIT:
+00000b 90f0 007a                   lds R15,ADCSRA
+00000d fef4                        sbrs R15,4
+00000e cffc                        rjmp WAIT
                                  
-000002 e000                      LDI R16, 0x00
-000003 b907                      OUT DDRC, R16
+00000f 9100 0079                   lds R16,ADCH
+000011 9110 0078                   lds R17,ADCL
                                  
-000004 ef0c                      LDI R16, 0b11111100
-000005 b90a                      OUT DDRD, R16
+                                   THRESHOLDS:
+000013 3312                        cpi R17,50
+000014 f038                        brlo ONLED1
+000015 3614                        cpi R17,100
+000016 f040                        brlo ONLED12
+000017 3916                        cpi R17,150
+000018 f048                        brlo ONLED123
+000019 3e16                        cpi R17,230
+00001a f050                        brlo ONLED1234
+00001b cfec                        rjmp READ
+                                   
+                                   ONLED1:
+00001c e022                         ldi R18,0x02  ;0000 0010
+00001d b925                         out PORTB,R18
+00001e cfe9                        rjmp READ
                                  
-                                 ;;;; ADMUX CONFIGURACAO
-000006 e600                      LDI R16, 0b01100000
-000007 9300 007c                 STS ADMUX, R16
+                                   ONLED12:
+00001f e026                         ldi R18,0x06  ;0000 0110
+000020 b925                         out PORTB,R18
+000021 cfe6                        rjmp READ
                                  
-                                 ;; TCCRnn CONFIGURACAO
-000009 ea01                      LDI R16, 0b10100001
-00000a 9300 0080                 STS TCCR1A, R16
+                                    ONLED123:
+000022 e02e                         ldi R18,0x0E  ;0000 1110
+000023 b925                         out PORTB,R18
+000024 cfe3                        rjmp READ
                                  
-00000c e009                      LDI R16, 0b00001001
-00000d 9300 0081                 STS TCCR1B, R16
+                                    ONLED1234:
+000025 e12e                         ldi R18,0x1E  ;0000 0110
+000026 b925                         out PORTB,R18
+000027 cfe0                        rjmp READ
+                                      
                                  
-00000f ee0f                      LDI R16, 0xEF
-000010 9300 0088                 STS OCR1AL, R16
-                                 
-000012 e000                      LDI R16, 0x00
-000013 9300 0089                 STS OCR1AH, R16
-                                 
-                                 /*;; ADCSRA CONFIGURACAO
-                                 LDI R16, 0b11000111
-                                 STS ADCSRA, R16 ;seta ADEN e ADSC p 1*/
-                                 
-                                 LOOP_LEITURA:
-000015 ec07                      LDI R16, 0b11000111
-000016 9300 007a                 STS ADCSRA, R16 ;seta ADEN e ADSC p 1
-                                 
-                                 ESPERA:
-000018 9100 007a                 LDS R16, ADCSRA
-00001a ff04                      SBRS R16, 4 ; ver se ADIF √© 1
-00001b cffc                      RJMP ESPERA
-                                 
-00001c 9100 0079                 LDS R16, ADCH // copia o valor analogico para o reg21
-00001e 9110 0078                 LDS R17, ADCL // copia o valor analogico para o reg22
-                                 //OUT PORTD, R22
-                                 
-000020 9310 0089                 STS OCR1AH, R17
-000022 9300 0088                 STS OCR1AL, R16
-                                 
-                                 ;LDI R27, 0xFF
-                                 ;CALL DELAY0
-000024 cff0                      RJMP LOOP_LEITURA
-                                 
-                                 /*DELAY0:
-                                 DEC R27
-                                 CPI R27, 0
-                                 BRNE DELAY0
-                                 LDI R27, 0xFF
-                                 DELAY1:
-                                 DEC R27
-                                 CPI R27, 0
-                                 BRNE DELAY1
-                                 RET*/
-                                 
-                                 ;LDI R21, 128
-                                 ;STS OCR0A, R21 // copia o valor analogico para o registrador de comparar (TIMER)
-                                 
-                                 
-                                 
-                                 ;RJMP LOOP_LEITURA
-                                 
-                                 
-                                 /*LDI R17, 0x00
-                                 LOOP: 
-                                 SBI PORTB, 1
-                                 LIGA: 
-                                 INC R17
-                                 CP R17, R21
-                                 BRNE LIGA
-                                 CBI PORTB, 1
-                                 APAGA:
-                                 INC R17
-                                 CPI R17, 0xFF
-                                 BRNE APAGA
-                                 JMP LOOP_LEITURA*/
-                                 
-                                 //OUT PORTB, R21
-                                 
-                                 /*CPI R21, 128
-                                 BRLO APAGA
-                                 SBI PORTB, 5
-                                 RJMP LOOP_LEITURA
-                                 
-                                 APAGA:
-                                 CBI PORTB, 5
-                                 RJMP LOOP_LEITURA
-                                 */
-                                 ;LOOP:
-                                 ;SBI PORTB, 5
-                                 ;CALL DELAY
-                                 ;CBI PORTB, 5
-                                 ;CALL DELAY
-                                 ;RJMP LOOP_LEITURA
-                                 
-                                 // Everything beneath is part of the delay loop
-                                 //DELAY:
-                                 //LDI R16, 80
-                                 
-                                 //OUTER_LOOP:
-                                 //LDI R24, 0x10;LOW(RAMEND)
-                                 //LDI R25, 0xF0;LOW(RAMEND)
-                                 
-                                 //DELAY_LOOP:
-                                 //ADIW R24, 1
-                                 //BRNE DELAY_LOOP
-                                 //DEC R16
-                                 //BRNE OUTER_LOOP
+                                  
 
 
 RESOURCE USE INFORMATION
@@ -1175,37 +1113,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  22 r17:   2 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   2 r16:   9 r17:   5 r18:   8 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 2 out of 35 (5.7%)
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   4 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+cpi   :   4 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   9 lds   :   3 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :   8 lds   :   3 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   2 rol   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   6 pop   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   7 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   8 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   2 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 6 out of 113 (5.3%)
+Instructions used: 8 out of 113 (7.1%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00004a     74      0     74   32768   0.2%
+[.cseg] 0x000000 0x000050     80      0     80   32768   0.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

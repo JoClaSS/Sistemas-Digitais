@@ -23,8 +23,13 @@
   <FILE>lab12.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <SETUP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>12</LINE></SETUP>
-  <LOOP_LEITURA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>44</LINE></LOOP_LEITURA>
-  <ESPERA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>48</LINE></ESPERA>
+  <MAIN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>12</LINE></MAIN>
+  <READ><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>21</LINE></READ>
+  <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>25</LINE></WAIT>
+  <THRESHOLDS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>33</LINE></THRESHOLDS>
+  <ONLED1><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>44</LINE></ONLED1>
+  <ONLED12><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>49</LINE></ONLED12>
+  <ONLED123><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>54</LINE></ONLED123>
+  <ONLED1234><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm</FILE><LINE>59</LINE></ONLED1234>
  </LABELS>
 </ASSEMBLER_INFO>

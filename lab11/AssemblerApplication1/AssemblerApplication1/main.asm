@@ -1,51 +1,51 @@
 .include "m328pdef.inc"
 .org 0x0000 
 rjmp MAIN
-
  
  MAIN: 
  ldi R16,0x1C               ;0b 0001 1100
  out DDRD,R16
- LDI R16, 0b00000101        ;clk/1024 
- OUT TCCR0B, R16
- LDI R16, 0b00000010		;CTC
- OUT TCCR0A, R16
- LDI R16, 0xFF
- OUT OCR0A, R16
- ldi R16,0x01
+ ldi R16, 0b00000101        ;clk/1024 
+ out TCCR0B, R16
+ ldi R16, 0b00000010		;CTC
+ out TCCR0A, R16
+ ldi R16, 0xFF
+ out OCR0A, R16
+ ldi R16,0x02
  sts TIMSK0,R16
  ldi R16,0x1C
  out PORTD,R16
  clr R16
  clr R20
  clr R21
- sts TCNT0,R16
+ out TCNT0,R16
+
 
  WAIT:
-  in R16,PINB
-  andi R16,0x04
-  cpi R16,0x04
-  brne WAIT
-  out PORTD,R20
-  clr R16
-  rcall DELAY
-
- PRESS:
-   cpi R20,0x04
-  breq RESULTADO
-    in R16,PINB    ; 0000 0100
+    in R16,PINB
   andi R16,0x04
    cpi R16,0x04
-  breq RED
-    in R17,PINB     ;0000 0010
-  andi R17,0x02
-   cpi R17,0x02
-  breq GREEN 
-    in R18,PINB     ;0000 0001
-  andi R18,0x01
-   cpi R18,0x01
-  breq BLUE
-  rjmp PRESS
+  brne WAIT
+   out PORTD,R20
+   clr R16
+ rcall DELAY
+
+ PRESS:
+    cpi R20,0x04
+   breq RESULTADO
+     in R16,PINB    ; 0000 0100
+   andi R16,0x04
+    cpi R16,0x04
+   breq RED
+     in R17,PINB     ;0000 0010
+   andi R17,0x02
+    cpi R17,0x02
+   breq GREEN 
+     in R18,PINB     ;0000 0001
+   andi R18,0x01
+    cpi R18,0x01
+   breq BLUE
+   rjmp PRESS
 
   RED:
      sbi PORTD,2
@@ -118,3 +118,4 @@ rjmp MAIN
 	 brne DELAYLOOP
 	 ret
 	 
+	  

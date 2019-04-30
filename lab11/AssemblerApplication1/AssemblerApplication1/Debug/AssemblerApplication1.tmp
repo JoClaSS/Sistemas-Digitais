@@ -22,7 +22,7 @@
   <FILE>AssemblerApplication1.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <MAIN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>6</LINE></MAIN>
+  <MAIN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>5</LINE></MAIN>
   <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>24</LINE></WAIT>
   <DELAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>107</LINE></DELAY>
   <PRESS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab11\AssemblerApplication1\AssemblerApplication1\main.asm</FILE><LINE>33</LINE></PRESS>
