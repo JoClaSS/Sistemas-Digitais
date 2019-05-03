@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Tue Apr 30 20:07:48 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab13\lab13\lab13\main.asm Tue Apr 30 19:27:47 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab13\lab13\lab13\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
-C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
+C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab13\lab13\lab13\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
                                  
                                  ;
                                  
@@ -987,9 +987,9 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): 
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; lab12.asm
+                                 ; lab13.asm
                                  ;
-                                 ; Created: 23/04/2019 00:25:28
+                                 ; Created: 30/04/2019 17:29:49
                                  ; Author : JosÃ©
                                  ;
                                  .INCLUDE "m328Pdef.inc"
@@ -1036,72 +1036,34 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm(7): 
                                  #endif  /* _M328PDEF_INC_ */
                                  
                                  ; ***** END OF FILE ******************************************************
-000000 940c 002c                 .org 0x0000 jmp SETUP
-00002a 940c 0037                 .org 0x002A jmp BARRA
+000000 940c 0002                 .org 0x0000 jmp SETUP
                                  
-                                   SETUP:
-00002c e00f                        ldi R16,0x0F ; 0000 1111
-00002d b904                        out DDRB,R16 
-00002e e600                        ldi R16,0b01100000
-00002f 9300 007c                   sts ADMUX,R16
-000031 ec0d                        ldi R16,0b11001101 
-000032 9300 007a                   sts ADCSRA,R16
-000034 e800                        ldi R16,0x80 
-000035 bf0f                        out SREG,R16
-                                    
-                                  WAIT:
-000036 cfff                         rjmp WAIT
+                                 SETUP:
+000002 e002                      LDI R16, 0x02
+000003 b904                      OUT DDRB, R16               
+000004 e600                      LDI R16, 0b01100000
+000005 9300 007c                 STS ADMUX, R16
+000007 ea01                      LDI R16, 0b10100001
+000008 9300 0080                 STS TCCR1A, R16
+00000a e009                      LDI R16, 0b00001001
+00000b 9300 0081                 STS TCCR1B, R16
+00000d ef0f                      ldi R16,0xFF
+00000e 9300 0089                 sts OCR1AH,R16
+000010 e000                      ldi R16,0x00
+000011 9300 0088                 sts OCR1AL,R16
                                  
-                                   BARRA:
-000037 9120 0079                   lds R18,ADCH
-000039 332f                        cpi R18,63
-00003a f038                        brlo ONLED1
-00003b 372e                         cpi R18,126
-00003c f068                        brlo ONLED12
-00003d 3c28                         cpi R18,200
-00003e f098                        brlo ONLED123
-00003f 3c28                         cpi R18,200
-000040 f4c8                        brsh ONLED1234
-000041 9518                        reti 
-                                   
-                                   ONLED1:
-000042 e031                         ldi R19,0x01  ;0000 0001
-000043 b935                         out PORTB,R19
-000044 ec0d                         ldi R16,0b11001101 
-000045 9300 007a                    sts ADCSRA,R16
-000047 e800                         ldi R16,0x80 
-000048 bf0f                         out SREG,R16
-000049 9518                         reti
-                                 
-                                   ONLED12:
-00004a e033                         ldi R19,0x03  ;0000 0011
-00004b b935                         out PORTB,R19
-00004c ec0d                         ldi R16,0b11001101 
-00004d 9300 007a                    sts ADCSRA,R16
-00004f e800                         ldi R16,0x80 
-000050 bf0f                         out SREG,R16
-000051 9518                         reti
-                                 
-                                    ONLED123:
-000052 e037                         ldi R19,0x07  ;0000 0111
-000053 b935                         out PORTB,R19
-000054 ec0d                         ldi R16,0b11001101 
-000055 9300 007a                    sts ADCSRA,R16
-000057 e800                         ldi R16,0x80 
-000058 bf0f                         out SREG,R16
-000059 9518                         reti
-                                 
-                                    ONLED1234:
-00005a e03f                         ldi R19,0x0F  ;0000 1111
-00005b b935                         out PORTB,R19
-00005c ec0d                         ldi R16,0b11001101 
-00005d 9300 007a                    sts ADCSRA,R16
-00005f e800                         ldi R16,0x80 
-000060 bf0f                         out SREG,R16
-000061 9518                         reti
-                                      
-                                 
-                                  
+                                 READ:
+000013 ec05                      LDI R16, 0b11000101
+000014 9300 007a                 STS ADCSRA, R16 
+                                 WAIT:
+000016 9100 007a                 LDS R16,ADCSRA
+000018 ff04                      SBRS R16,4 
+000019 cffc                      RJMP WAIT
+00001a 9100 0079                 LDS R16, ADCH 
+00001c 9110 0078                 LDS R17, ADCL 
+00001e 9310 0089                 STS OCR1AH,R17
+000020 9300 0088                 STS OCR1AL,R16
+000022 cff0                      RJMP READ
 
 
 RESOURCE USE INFORMATION
@@ -1121,37 +1083,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  24 r17:   0 r18:   5 r19:   8 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  18 r17:   2 r18:   0 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 3 out of 35 (8.6%)
+Registers used: 2 out of 35 (5.7%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   3 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   1 brtc  :   0 brts  :   0 brvc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   4 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   2 
-ld    :   0 ldd   :   0 ldi   :  16 lds   :   1 lpm   :   0 lsl   :   0 
+cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   1 
+ld    :   0 ldd   :   0 ldi   :   7 lds   :   3 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  10 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   5 rjmp  :   1 rol   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   1 pop   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   2 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   6 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   8 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+Instructions used: 7 out of 113 (6.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000c4    116      0    116   32768   0.4%
+[.cseg] 0x000000 0x000046     70      0     70   32768   0.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

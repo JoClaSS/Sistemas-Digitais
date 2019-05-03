@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab12\lab12\lab12\main.asm Tue Apr 30 20:07:48 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab13\lab13\lab13\main.asm Tue Apr 30 19:27:47 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,10 +695,6 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-CSEG SETUP        0000002c
-CSEG BARRA        00000037
-CSEG WAIT         00000036
-CSEG ONLED1       00000042
-CSEG ONLED12      0000004a
-CSEG ONLED123     00000052
-CSEG ONLED1234    0000005a
+CSEG SETUP        00000002
+CSEG READ         00000013
+CSEG WAIT         00000016
