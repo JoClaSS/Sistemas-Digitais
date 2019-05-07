@@ -26,9 +26,9 @@
   <SETUP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>10</LINE></SETUP>
   <FUNC><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>16</LINE></FUNC>
   <RETAN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>28</LINE></RETAN>
-  <SERRA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>41</LINE></SERRA>
-  <TRIAN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>61</LINE></TRIAN>
-  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>88</LINE></delay>
-  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>94</LINE></loop>
+  <SERRA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>37</LINE></SERRA>
+  <TRIAN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>54</LINE></TRIAN>
+  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>81</LINE></delay>
+  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm</FILE><LINE>87</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>

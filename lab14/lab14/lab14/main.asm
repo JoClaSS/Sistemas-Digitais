@@ -26,14 +26,10 @@ FUNC:
  rjmp FUNC
 
  RETAN:
-  ldi R19,0x01
   ldi R20,0xFC
-  out PORTB,R19
   out PORTD,R20
   rcall delay
-  clr R19
   clr R20
-  out PORTB,R19
   out PORTD,R20
   rcall delay
   rjmp FUNC
@@ -51,10 +47,7 @@ FUNC:
   rcall delay
   sbi PORTD,7
   rcall delay
-  sbi PORTB,0
-  rcall delay
   clr R17
-  out PORTB,R17
   out PORTD,R17
   rjmp FUNC
 
@@ -88,7 +81,7 @@ FUNC:
   delay:
    clr R21
    clr R22
-   ldi R23,10
+   ldi R23,50
   
    
   loop:

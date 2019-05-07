@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Mon May 06 23:56:32 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Tue May 07 09:56:26 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -698,7 +698,7 @@ EQU  INT_VECTORS_SIZE 00000034
 CSEG SETUP        0000002c
 CSEG FUNC         00000030
 CSEG RETAN        0000003a
-CSEG SERRA        00000045
-CSEG TRIAN        00000057
-CSEG delay        00000070
-CSEG loop         00000073
+CSEG SERRA        00000041
+CSEG TRIAN        00000050
+CSEG delay        00000069
+CSEG loop         0000006c
