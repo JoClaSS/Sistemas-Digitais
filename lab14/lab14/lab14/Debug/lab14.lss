@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Tue May 07 09:56:26 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Tue May 07 13:33:09 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
 C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328Pdef.inc'
@@ -1112,7 +1112,7 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm(7): 
                                    delay:
 000069 2755                         clr R21
 00006a 2766                         clr R22
-00006b e372                         ldi R23,50
+00006b e075                         ldi R23,5
                                    
                                     
                                    loop:

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm Tue May 07 11:18:32 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm Tue May 07 14:49:56 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
 C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm(7): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc'
@@ -1039,152 +1039,155 @@ C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm(7): 
 000000 940c 0002                 .org 0x0000 jmp SETUP
                                  
                                  SETUP:
-000002 ef0f                       ldi R16,0xFF
+000002 e001                       ldi R16,0x01
 000003 b904                       out DDRB,R16
-000004 b90a                       out DDRD,R16	
-000005 ef00                       ldi R16,240
-000006 2f10                       mov R17,R16
+000004 ef0c                       ldi R16,0xFC
+000005 b90a                       out DDRD,R16	
+000006 ec09                       ldi R16,201
+000007 2f10                       mov R17,R16
                                  
                                  BCD:
-000007 3614                       cpi R17,100
-000008 f430                       brsh CENTENA
-000009 301a                       cpi R17,10
-00000a f448                       brsh DEZENA
-00000b 301a                       cpi R17,10
-00000c f060                       brlo UNIDADE
-00000d c000                       rjmp WAIT
+000008 3614                       cpi R17,100
+000009 f430                       brsh CENTENA
+00000a 301a                       cpi R17,10
+00000b f448                       brsh DEZENA
+00000c 301a                       cpi R17,10
+00000d f060                       brlo UNIDADE
+00000e c000                       rjmp WAIT
                                  
                                   WAIT:
-00000e cfff                        rjmp WAIT
+00000f cfff                        rjmp WAIT
                                  
                                   CENTENA:
-00000f 5614                        subi R17,100
-000010 9543                        inc R20
-000011 3614                        cpi R17,100
-000012 f7e0                        brsh CENTENA
-000013 c006                        rjmp DISPLAY
+000010 5614                        subi R17,0x64
+000011 9543                        inc R20
+000012 3614                        cpi R17,100
+000013 f7e0                        brsh CENTENA
+000014 c006                        rjmp DISPLAY
                                  
                                   DEZENA:
-000014 501a                        subi R17,10
-000015 9543                        inc R20
-000016 301a                        cpi R17,10
-000017 f7e0                        brsh DEZENA
-000018 c001                        rjmp DISPLAY
+000015 501a                        subi R17,0x0A
+000016 9543                        inc R20
+000017 301a                        cpi R17,10
+000018 f7e0                        brsh DEZENA
+000019 c001                        rjmp DISPLAY
                                  
                                   UNIDADE:
-000019 2f41                         mov R20,R17
+00001a 2f41                         mov R20,R17
                                   
                                   DISPLAY:  
-00001a 3040                       cpi R20,0
-00001b f0a1                       breq ZERO
-00001c 3041                       cpi R20,1
-00001d f0b1                       breq UM 
-00001e 3042                       cpi R20,2
-00001f f0c1                       breq DOIS
-000020 3043                       cpi R20,3
-000021 f0e1                       breq TRES
-000022 3044                       cpi R20,4
-000023 f101                       breq QUATRO
-000024 3045                       cpi R20,5
-000025 f121                       breq CINCO
-000026 3046                       cpi R20,6
-000027 f141                       breq SEIS
-000028 3047                       cpi R20,7
-000029 f161                       breq SETE
-00002a 3048                       cpi R20,8
-00002b f171                       breq OITO
-00002c 3049                       cpi R20,9
-00002d f191                       breq NOVE
-00002e 2744                       clr R20
-00002f cfd7                       rjmp BCD
-                                 
+00001b 2766                       clr R22
+00001c b96b                       out PORTD,R22
+00001d b965                       out PORTB,R22
+00001e 3040                       cpi R20,0
+00001f f099                       breq ZERO
+000020 3041                       cpi R20,1
+000021 f0a9                       breq UM 
+000022 3042                       cpi R20,2
+000023 f0b9                       breq DOIS
+000024 3043                       cpi R20,3
+000025 f0d9                       breq TRES
+000026 3044                       cpi R20,4
+000027 f0f9                       breq QUATRO
+000028 3045                       cpi R20,5
+000029 f119                       breq CINCO
+00002a 3046                       cpi R20,6
+00002b f139                       breq SEIS
+00002c 3047                       cpi R20,7
+00002d f159                       breq SETE
+00002e 3048                       cpi R20,8
+00002f f169                       breq OITO
+000030 3049                       cpi R20,9
+000031 f189                       breq NOVE
+000032 cfd5                       rjmp BCD
                                  
                                   ZERO:
-000030 ef6c                        ldi R22,0xFC
-000031 b96b                        out PORTD,R22
-000032 d033                        rcall delay
-000033 cfd3                        rjmp BCD
+000033 ef6c                        ldi R22,0xFC
+000034 b96b                        out PORTD,R22
+000035 d033                        rcall delay
+000036 cfd1                        rjmp BCD
                                  
                                    UM:
-000034 e06c                        ldi R22,0x0C
-000035 b96b                        out PORTD,R22
-000036 d02f                        rcall delay
-000037 cfcf                        rjmp BCD
+000037 e168                        ldi R22,0x18
+000038 b96b                        out PORTD,R22
+000039 d02f                        rcall delay
+00003a cfcd                        rjmp BCD
                                  
                                    DOIS:
-000038 e66c                        ldi R22,0x6C
-000039 b96b                        out PORTD,R22
-00003a e061                        ldi R22,0x01
-00003b b965                        out PORTB,R22
-00003c d029                        rcall delay
-00003d cfc9                        rjmp BCD
+00003b e66c                        ldi R22,0x6C
+00003c b96b                        out PORTD,R22
+00003d e061                        ldi R22,0x01
+00003e b965                        out PORTB,R22
+00003f d029                        rcall delay
+000040 cfc7                        rjmp BCD
                                  
                                    TRES:
-00003e e36c                        ldi R22,0x3C
-00003f b96b                        out PORTD,R22
-000040 e061                        ldi R22,0x01
-000041 b965                        out PORTB,R22
-000042 d023                        rcall delay
-000043 cfc3                        rjmp BCD
+000041 e36c                        ldi R22,0x3C
+000042 b96b                        out PORTD,R22
+000043 e061                        ldi R22,0x01
+000044 b965                        out PORTB,R22
+000045 d023                        rcall delay
+000046 cfc1                        rjmp BCD
                                  
                                    QUATRO:
-000044 e962                        ldi R22,0x92
-000045 b96b                        out PORTD,R22
-000046 e061                        ldi R22,0x01
-000047 b965                        out PORTB,R22
-000048 d01d                        rcall delay
-000049 cfbd                        rjmp BCD
+000047 e968                        ldi R22,0x98
+000048 b96b                        out PORTD,R22
+000049 e061                        ldi R22,0x01
+00004a b965                        out PORTB,R22
+00004b d01d                        rcall delay
+00004c cfbb                        rjmp BCD
                                    
                                    CINCO:
-00004a eb61                        ldi R22,0xB1
-00004b b96b                        out PORTD,R22
-00004c e061                        ldi R22,0x01
-00004d b965                        out PORTB,R22
-00004e d017                        rcall delay
-00004f cfb7                        rjmp BCD
+00004d eb64                        ldi R22,0xB4
+00004e b96b                        out PORTD,R22
+00004f e061                        ldi R22,0x01
+000050 b965                        out PORTB,R22
+000051 d017                        rcall delay
+000052 cfb5                        rjmp BCD
                                  
                                    SEIS:
-000050 ef61                        ldi R22,0xF1
-000051 b96b                        out PORTD,R22
-000052 e061                        ldi R22,0x01
-000053 b965                        out PORTB,R22
-000054 d011                        rcall delay
-000055 cfb1                        rjmp BCD
+000053 ef61                        ldi R22,0xF1
+000054 b96b                        out PORTD,R22
+000055 e061                        ldi R22,0x01
+000056 b965                        out PORTB,R22
+000057 d011                        rcall delay
+000058 cfaf                        rjmp BCD
                                  
                                    SETE:
-000056 e16c                        ldi R22,0x1C
-000057 b96b                        out PORTD,R22
-000058 d00d                        rcall delay
-000059 cfad                        rjmp BCD
+000059 e16c                        ldi R22,0x1C
+00005a b96b                        out PORTD,R22
+00005b d00d                        rcall delay
+00005c cfab                        rjmp BCD
                                  
                                    OITO:
-00005a ef6c                        ldi R22,0xFC
-00005b b96b                        out PORTD,R22
-00005c e061                        ldi R22,0x01
-00005d b965                        out PORTB,R22
-00005e d007                        rcall delay
-00005f cfa7                        rjmp BCD
+00005d ef6c                        ldi R22,0xFC
+00005e b96b                        out PORTD,R22
+00005f e061                        ldi R22,0x01
+000060 b965                        out PORTB,R22
+000061 d007                        rcall delay
+000062 cfa5                        rjmp BCD
                                  
                                    NOVE:
-000060 e96c                        ldi R22,0x9C
-000061 b96b                        out PORTD,R22
-000062 e061                        ldi R22,0x01
-000063 b965                        out PORTB,R22
-000064 d001                        rcall delay
-000065 cfa1                        rjmp BCD
+000063 e96c                        ldi R22,0x9C
+000064 b96b                        out PORTD,R22
+000065 e061                        ldi R22,0x01
+000066 b965                        out PORTB,R22
+000067 d001                        rcall delay
+000068 cf9f                        rjmp BCD
                                  
                                    delay:
-000066 2722                         clr R18
-000067 2733                         clr R19
-000068 e654                         ldi R21,100
+000069 2722                         clr R18
+00006a 2733                         clr R19
+00006b 2744                         clr R20
+00006c e654                         ldi R21,100
                                  
                                    loop:
-000069 952a                         dec R18
-00006a f7f1                         brne loop
-00006b 953a                         dec r19
-00006c f7e1                         brne loop
-00006d 955a                         dec R21
-00006e f7d1                         brne loop
+00006d 952a                         dec R18
+00006e f7f1                         brne loop
+00006f 953a                         dec r19
+000070 f7e1                         brne loop
+000071 955a                         dec R21
+000072 f7d1                         brne loop
 
 
 RESOURCE USE INFORMATION
@@ -1204,8 +1207,8 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   5 r17:   9 r18:   2 r19:   2 r20:  14 
-r21:   2 r22:  34 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:   6 r17:   9 r18:   2 r19:   2 r20:  14 
+r21:   2 r22:  37 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
 Registers used: 7 out of 35 (20.0%)
 
@@ -1216,13 +1219,13 @@ brcc  :   0 brcs  :   0 break :   0 breq  :  10 brge  :   0 brhc  :   0
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   4 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   3 cls   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   4 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :  15 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   2 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :  20 lds   :   0 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :  21 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   2 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  19 pop   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  21 pop   :   0 
 push  :   0 rcall :  10 ret   :   1 reti  :   0 rjmp  :  15 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
@@ -1234,7 +1237,7 @@ Instructions used: 16 out of 113 (14.2%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000e0    224      0    224   32768   0.7%
+[.cseg] 0x000000 0x0000e8    232      0    232   32768   0.7%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

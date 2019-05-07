@@ -8,10 +8,11 @@
 .org 0x0000 jmp SETUP
 
 SETUP:
- ldi R16,0xFF
+ ldi R16,0x01
  out DDRB,R16
+ ldi R16,0xFC
  out DDRD,R16	
- ldi R16,240
+ ldi R16,201
  mov R17,R16
 
 BCD:
@@ -27,14 +28,14 @@ BCD:
   rjmp WAIT
 
  CENTENA:
-  subi R17,100
+  subi R17,0x64
   inc R20
   cpi R17,100
   brsh CENTENA
   rjmp DISPLAY
 
  DEZENA:
-  subi R17,10
+  subi R17,0x0A
   inc R20
   cpi R17,10
   brsh DEZENA
@@ -44,6 +45,9 @@ BCD:
    mov R20,R17
  
  DISPLAY:  
+ clr R22
+ out PORTD,R22
+ out PORTB,R22
  cpi R20,0
  breq ZERO
  cpi R20,1
@@ -64,9 +68,7 @@ BCD:
  breq OITO
  cpi R20,9
  breq NOVE
- clr R20
  rjmp BCD
-
 
  ZERO:
   ldi R22,0xFC
@@ -75,7 +77,7 @@ BCD:
   rjmp BCD
 
   UM:
-  ldi R22,0x0C
+  ldi R22,0x18
   out PORTD,R22
   rcall delay
   rjmp BCD
@@ -97,7 +99,7 @@ BCD:
   rjmp BCD
 
   QUATRO:
-  ldi R22,0x92
+  ldi R22,0x98
   out PORTD,R22
   ldi R22,0x01
   out PORTB,R22
@@ -105,7 +107,7 @@ BCD:
   rjmp BCD
   
   CINCO:
-  ldi R22,0xB1
+  ldi R22,0xB4
   out PORTD,R22
   ldi R22,0x01
   out PORTB,R22
@@ -145,6 +147,7 @@ BCD:
   delay:
    clr R18
    clr R19
+   clr R20
    ldi R21,100
 
   loop:

@@ -23,23 +23,23 @@
  </OUTPUT_FILES>
  <LABELS>
   <SETUP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>10</LINE></SETUP>
-  <BCD><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>17</LINE></BCD>
-  <CENTENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>29</LINE></CENTENA>
-  <DEZENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>36</LINE></DEZENA>
-  <UNIDADE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>43</LINE></UNIDADE>
-  <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>26</LINE></WAIT>
-  <DISPLAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>46</LINE></DISPLAY>
-  <ZERO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>71</LINE></ZERO>
-  <UM><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>77</LINE></UM>
-  <DOIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>83</LINE></DOIS>
-  <TRES><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>91</LINE></TRES>
-  <QUATRO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>99</LINE></QUATRO>
-  <CINCO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>107</LINE></CINCO>
-  <SEIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>115</LINE></SEIS>
-  <SETE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>123</LINE></SETE>
-  <OITO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>129</LINE></OITO>
-  <NOVE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>137</LINE></NOVE>
-  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>145</LINE></delay>
-  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>150</LINE></loop>
+  <BCD><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>18</LINE></BCD>
+  <CENTENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>30</LINE></CENTENA>
+  <DEZENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>37</LINE></DEZENA>
+  <UNIDADE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>44</LINE></UNIDADE>
+  <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>27</LINE></WAIT>
+  <DISPLAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>47</LINE></DISPLAY>
+  <ZERO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>73</LINE></ZERO>
+  <UM><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>79</LINE></UM>
+  <DOIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>85</LINE></DOIS>
+  <TRES><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>93</LINE></TRES>
+  <QUATRO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>101</LINE></QUATRO>
+  <CINCO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>109</LINE></CINCO>
+  <SEIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>117</LINE></SEIS>
+  <SETE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>125</LINE></SETE>
+  <OITO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>131</LINE></OITO>
+  <NOVE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>139</LINE></NOVE>
+  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>147</LINE></delay>
+  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>153</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>

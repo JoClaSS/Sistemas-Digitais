@@ -81,7 +81,7 @@ FUNC:
   delay:
    clr R21
    clr R22
-   ldi R23,50
+   ldi R23,5
   
    
   loop:
