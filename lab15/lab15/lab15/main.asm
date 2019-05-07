@@ -4,15 +4,15 @@
 ; Created: 07/05/2019 10:05:48
 ; Author : José
 ;
-.include "mp328p.def"
-.org 0x0000 SETUP
+.include "m328pdef.inc"
+.org 0x0000 jmp SETUP
 
 SETUP:
  ldi R16,0xFF
  out DDRB,R16
  out DDRD,R16	
  ldi R16,240
- lds R17,R16
+ mov R17,R16
 
 BCD:
  cpi R17,100
@@ -41,8 +41,9 @@ BCD:
   rjmp DISPLAY
 
  UNIDADE:
-   lds R20,R17
-   
+   mov R20,R17
+ 
+ DISPLAY:  
  cpi R20,0
  breq ZERO
  cpi R20,1
@@ -68,75 +69,89 @@ BCD:
 
 
  ZERO:
-  ldi R15,0xFC
-  out PORTD,R15
+  ldi R22,0xFC
+  out PORTD,R22
   rcall delay
   rjmp BCD
 
   UM:
-  ldi R15,0x0C
-  out PORTD,R15
+  ldi R22,0x0C
+  out PORTD,R22
   rcall delay
   rjmp BCD
 
   DOIS:
-  ldi R15,0x6C
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0x6C
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
 
   TRES:
-  ldi R15,0x3C
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0x3C
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
 
   QUATRO:
-  ldi R15,0x92
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0x92
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
   
   CINCO:
-  ldi R15,0xB1
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0xB1
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
 
   SEIS:
-  ldi R15,0xF1
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0xF1
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
 
   SETE:
-  ldi R15,0x1C
-  out PORTD,R15
+  ldi R22,0x1C
+  out PORTD,R22
   rcall delay
   rjmp BCD
 
   OITO:
-  ldi R15,0xFC
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0xFC
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
 
   NOVE:
-  ldi R15,0x9C
-  out PORTD,R15
-  ldi R15,0x01
-  out PORTB,R15
+  ldi R22,0x9C
+  out PORTD,R22
+  ldi R22,0x01
+  out PORTB,R22
   rcall delay
   rjmp BCD
+
+  delay:
+   clr R18
+   clr R19
+   ldi R21,100
+
+  loop:
+   dec R18
+   brne loop
+   dec r19
+   brne loop
+   dec R21
+   brne loop
+   ret

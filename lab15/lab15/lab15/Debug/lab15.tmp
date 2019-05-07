@@ -1,0 +1,45 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\Debug\lab15.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>lab15.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>lab15.map</FILE>
+  <FILE>lab15.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <SETUP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>10</LINE></SETUP>
+  <BCD><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>17</LINE></BCD>
+  <CENTENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>29</LINE></CENTENA>
+  <DEZENA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>36</LINE></DEZENA>
+  <UNIDADE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>43</LINE></UNIDADE>
+  <WAIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>26</LINE></WAIT>
+  <DISPLAY><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>46</LINE></DISPLAY>
+  <ZERO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>71</LINE></ZERO>
+  <UM><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>77</LINE></UM>
+  <DOIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>83</LINE></DOIS>
+  <TRES><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>91</LINE></TRES>
+  <QUATRO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>99</LINE></QUATRO>
+  <CINCO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>107</LINE></CINCO>
+  <SEIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>115</LINE></SEIS>
+  <SETE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>123</LINE></SETE>
+  <OITO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>129</LINE></OITO>
+  <NOVE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>137</LINE></NOVE>
+  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>145</LINE></delay>
+  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab15\lab15\lab15\main.asm</FILE><LINE>150</LINE></loop>
+ </LABELS>
+</ASSEMBLER_INFO>
