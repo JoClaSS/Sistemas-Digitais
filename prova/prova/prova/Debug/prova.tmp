@@ -1,0 +1,61 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\Debug\prova.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>prova.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>prova.map</FILE>
+  <FILE>prova.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <INIT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>10</LINE></INIT>
+  <COIN_STORE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>16</LINE></COIN_STORE>
+  <MOEDA><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>39</LINE></MOEDA>
+  <UMREAL><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>60</LINE></UMREAL>
+  <CINQUENT><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>65</LINE></CINQUENT>
+  <VINTEC><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>70</LINE></VINTEC>
+  <DEZC><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>75</LINE></DEZC>
+  <CINC><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>80</LINE></CINC>
+  <UMC><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>85</LINE></UMC>
+  <UPDW><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>90</LINE></UPDW>
+  <UP><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>101</LINE></UP>
+  <DW><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>104</LINE></DW>
+  <CN><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>108</LINE></CN>
+  <C0><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>123</LINE></C0>
+  <C1><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>144</LINE></C1>
+  <C2><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>165</LINE></C2>
+  <C3><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>185</LINE></C3>
+  <C4><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>188</LINE></C4>
+  <C5><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>191</LINE></C5>
+  <BCD><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>259</LINE></BCD>
+  <delay><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>330</LINE></delay>
+  <outofrange3><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>195</LINE></outofrange3>
+  <outofrange4><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>216</LINE></outofrange4>
+  <outofrange5><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>238</LINE></outofrange5>
+  <ZERO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>282</LINE></ZERO>
+  <UM><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>286</LINE></UM>
+  <DOIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>290</LINE></DOIS>
+  <TRES><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>295</LINE></TRES>
+  <QUATRO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>300</LINE></QUATRO>
+  <CINCO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>305</LINE></CINCO>
+  <SEIS><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>310</LINE></SEIS>
+  <SETE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>315</LINE></SETE>
+  <OITO><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>320</LINE></OITO>
+  <NOVE><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>325</LINE></NOVE>
+  <loop><FILE>C:\Users\José\Documents\GitHub\Sistemas-Digitais\prova\prova\prova\main.asm</FILE><LINE>333</LINE></loop>
+ </LABELS>
+</ASSEMBLER_INFO>
