@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Tue May 14 17:34:46 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\SPI\SPI\SPI\main.asm Tue May 14 14:28:26 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,10 +695,8 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-CSEG SETUP        0000002c
-CSEG FUNC         00000030
-CSEG RETAN        0000003a
-CSEG SERRA        00000041
-CSEG TRIAN        00000050
-CSEG delay        00000069
-CSEG loop         0000006c
+CSEG SETUP        00000013
+CSEG RECEIVE      0000001a
+CSEG WAIT         00000019
+CSEG ON           0000001f
+CSEG OFF          00000022

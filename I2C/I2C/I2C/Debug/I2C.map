@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\lab14\lab14\lab14\main.asm Tue May 14 17:34:46 2019
+AVRASM ver. 2.2.7  C:\Users\José\Documents\GitHub\Sistemas-Digitais\I2C\I2C\I2C\main.asm Mon May 13 17:47:52 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,10 +695,9 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-CSEG SETUP        0000002c
-CSEG FUNC         00000030
-CSEG RETAN        0000003a
-CSEG SERRA        00000041
-CSEG TRIAN        00000050
-CSEG delay        00000069
-CSEG loop         0000006c
+CSEG SETUP        00000032
+CSEG SEND         0000003e
+CSEG WAIT         0000003d
+CSEG CMPLT        00000047
+CSEG DELAY        0000004a
+CSEG LOOP         0000004b
