@@ -5,6 +5,7 @@
  * Author : José
  */ 
 #define F_CPU 16000000UL
+#define PI 3.1415
 #include <avr/io.h>
 #include <math.h>
 #include <util/delay.h>
@@ -17,69 +18,58 @@
 // =====================================================//
 
 
-void frenquecia(uint8_t freq)  //unsigned int 1 byte
+/*void frenquecia(uint8_t freq)  //unsigned int 1 byte
 {
 	TCCR1B |= (1<<CS12) |  (1<<WGM12); // prescala 256, CTC
 	TIMSK1 |= (1<<OCIE1A);
 	OCR1A = ((F_CPU/freq*2*256)-1);
-}
-int init_PWM(int DCa,int DCb)
-{
- TCCR1B |= (1<<CS10) |  (1<<WGM12); //sem prescala, CTC 
- TIMSK1 |= (1<<OCIE1A) | (1<<OCIE1B); //OUTPUT compara com IRQ
- OCR1A = DCa;
- OCR1B = DCb;
- return 0;
+}  
+*/
+
+void retang(){
+	PORTD=0XFC;
+	_delay_ms(8);
+	PORTD = 0X00;
+	_delay_ms(8);
 }
 
-void notseno(){
-	int BITi = 2;
-	if(DDRC == 0X01){
-		PORTD = 0XFC;
-		_delay_ms(9);  //duty cycle 50%
-		PORTD = 0X00;
-		_delay_ms(9);
+void triang(){
+	int i;
+	for(i = 2;i<8;i++){
+		set_bit(PORTD,i);
+		_delay_ms(0.9);
 	}
-	else if(DDRC == 0X10){
-		for(BITi = 2;BITi <= 7;BITi++){
-			set_bit(PORTD,BITi);
-			_delay_ms(2); // 18/12 = 1.5 = 2
-		}
-		for(BITi = 7;BITi >= 2;BITi--){
-			clr_bit(PORTD,BITi);
-			_delay_ms(2);
-		}
+	for(i = 8;i>2;i--){
+		clr_bit(PORTD,i);
+		_delay_ms(0.9);
 	}
 }
 
-void inputseno(int x,int y){
-	int i = 0;
-	for(i=0;i<5;i++){
-	 init_PWM(x,y);
-	 x = x + 100;
-	 y = y - 100;
-	}
-	for(i=5;i>0;i--){
-	 init_PWM(x,y);
-	 x = x - 100;
-	 y = y + 100;
+void seno(){
+	int w,i,m;    //w = 2*pi*f
+	w = 2*PI*60;
+	for(i = 0; i<=PI;i = i + 0.1){
+	m = sin(w*i);
+	m = m & 0b11111100;
+	PORTD = m;
 	}
 }
-ISR(TIMER1_COMPA_vect){
-   notseno();
-}
-ISR(TIMER1_COMPB_vect){
-   inputseno(500,500);	
-}
-
 int main(void)
 {
-    //Garantir ; T = 1/60 = 0,018s = 18ms
-    DDRD = 0xFC;
-	init_PWM(500,500);
-	sei();
+	//Garantir ; T = 1/60 = 0,018s = 18ms
+	DDRD = 0xFC;
+	DDRC = 0X00;
 	while(1){
-	  }
+		if(PINC == 0X01){
+		retang();
+		}
+		else if(PINC == 0X02){
+		triang();
+		}
+		else{
+	    seno();
+		}
+	}
 	return 0;
 }
 
