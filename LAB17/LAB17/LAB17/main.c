@@ -5,36 +5,34 @@
  * Author : José
  */ 
 #define F_CPU 16000000UL
+#define PI 3.1415
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#define LED_ON  PORTB |= (1<<PORTB1)
-#define LED_OFF PORTB &= ~(1<<PORTB1)
 
-void PWMbegin(int cmpA,int cmpB){
-	TCCR1B |= (1<<CS10) | (1<<WGM12);
-	TIMSK1 |= (1<<OCIE1A) | (1<<OCIE1B);
-	OCR1A = cmpA;
-	OCR1B = cmpB;
+
+void setup(){
+	DDRD = 0XFC;
 }
 
-ISR(TIMER1_COMPA_vect){
-	LED_ON;
-	sei();
+void cosseno(){
+	int w,i,n,xc,yc; //w = 2*pi*f;
+	w = 2*PI*60; //AJUSTAR F
+	for(n = 0;n < 10; n++){
+		for(i = 0; i < 2*PI; i = i + 0.001){
+			xc = i*PORTD0;
+			yc = xc * cos(n*i*w);
+		    yc = yc & 0xFC;
+			PORTD = yc;
+		}
+	}
 }
-
-ISR(TIMER1_COMPB_vect){
-	LED_OFF;
-	sei();
-}
-
 int main(void)
 {
-	DDRB = PINB1;
-    PWMbegin(900,500);
-	sei();
+	setup();
     while (1) 
     {
+		cosseno(); 
     }
 }
 

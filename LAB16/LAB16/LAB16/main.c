@@ -25,52 +25,53 @@
 	OCR1A = ((F_CPU/freq*2*256)-1);
 }  
 */
-
+//frequencia = 60hz
 void retang(){
-	PORTD=0XFC;
+	PORTD = 0xFC;
 	_delay_ms(8);
-	PORTD = 0X00;
+	PORTD = 0x00;
 	_delay_ms(8);
 }
 
 void triang(){
-	int i;
-	for(i = 2;i<8;i++){
-		set_bit(PORTD,i);
-		_delay_ms(0.9);
+	int i,k;
+	for(i = 255;i>=0;i--){
+	  k = i & 0xfc;
+	  PORTD = k;
+	  _delay_ms(0.03);
 	}
-	for(i = 8;i>2;i--){
-		clr_bit(PORTD,i);
-		_delay_ms(0.9);
+	for(i = 0;i<256;i++){
+	 k = i & 0xfc;
+	  PORTD = k;
+	  _delay_ms(0.03);
 	}
 }
 
 void seno(){
-	int w,i,m;    //w = 2*pi*f
+	float i,w,s;
+	int x;
 	w = 2*PI*60;
-	for(i = 0; i<=PI;i = i + 0.1){
-	m = sin(w*i);
-	m = m & 0b11111100;
-	PORTD = m;
+	for(i = 0;i<=PI;i = i + 0.0001){
+	s = sin(w*i);
+	x = s*127 +127;
+	PORTD = x;
+	_delay_ms(1);
 	}
 }
+
+
 int main(void)
 {
 	//Garantir ; T = 1/60 = 0,018s = 18ms
 	DDRD = 0xFC;
-	DDRC = 0X00;
 	while(1){
-		if(PINC == 0X01){
-		retang();
-		}
-		else if(PINC == 0X02){
+		if(PINC == 0x00)
 		triang();
-		}
-		else{
-	    seno();
-		}
+		else if(PINC == 0X01)
+		retang();
+		else
+		seno();
 	}
-	return 0;
 }
 
 
