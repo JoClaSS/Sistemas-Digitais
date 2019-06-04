@@ -4,70 +4,39 @@
  * Created: 20/05/2019 13:39:36
  * Author : José
  */ 
-#define F_CPU 16000000UL // 1Mhz
+#define F_CPU 16000000UL
 #include <avr/io.h>
-#include <stdlib.h>
+#include <util/delay.h> 
 #include <math.h>
-#include <avr/interrupt.h>
-#define pi 3,1415
-#define CMAX 100u
-
-volatile unsigned int x=1 ;
-volatile int newx=0 ;
-volatile unsigned int counter = 0;
-unsigned char  x1;
-
-
-//void saida();
 
 void setup(){
-	DDRD = 0b11111100;
-	ADMUX = 0b00100000;
-	ADCSRA = 0b11101010; 
-	ADCSRB = 0;
-    TCCR1A = 0;
-	TCCR1B = 5;
-    TCCR1C = 0;
-    TIMSK1 = 2;
-    OCR1AH = 0;
-    OCR1AL = 4;
-    sei();
+	DDRD = 0xFC;
+	DDRB = 0x03;
+	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1);
+	ADMUX = (1<<REFS0);
 }
 
-int main()
-{
-    while (1) 
-    {		
-		saida();
-   } 
-}
-
-
-void saida(){
-x1 = x>>2; //Deslocando 2 para esquerda
-PORTD = x1;	
-
+int main(void){
+	double n,adcO;
+	unsigned int final;
+	double cosseno;
+	setup();
+	while(1) {                     
+		for(n = 0;n <= 6.28;n = n + 0.01){
+		ADCSRA |= (1<<ADSC);
+		while (ADCSRA & (1<<ADSC));
+		adcO = (ADC>>3);			    //int
+		cosseno = (adcO*cos(n))+127.00; //float
+		final = cosseno;			        //int
+		PORTD = ((final & 0b0000000000111111)<<2); 
+		PORTB = ((final & 0b0000000011000000)>>6);
 		}
-return ;
-		
+	}
+	return 0;                     
 }
 
 
-ISR(ADC_vect){
+
 	
-	newx = ADCH;
-	ADCSRA = 0b11101010; //by 2 division
-	return;
-}
 
-ISR(TIMER1_COMPA_vect){
-	TCNT1H = 0;
-	TCNT1L = 0;
-	counter++;
-	double newc = (counter/pi);
-	newx = newx/2;
-	x = (newx*cos(newc))+127;
-	if (counter == CMAX){counter = 0;}
-	return;	
-}
 
