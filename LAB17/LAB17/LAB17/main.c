@@ -22,11 +22,11 @@ int main(void){
 	double cosseno;
 	setup();
 	while(1) {                     
-		for(n = 0;n <= 6.28;n = n + 0.01){
+		for(n=0;n<=6.28;n=n+0.01){
 		ADCSRA |= (1<<ADSC);
 		while (ADCSRA & (1<<ADSC));
-		adcO = (ADC>>3);			    //int
-		cosseno = (adcO*cos(n))+127.00; //float
+		adcO = (ADC>>3);			        //int
+		cosseno = (adcO*cos(n))+127.00;     //float
 		final = cosseno;			        //int
 		PORTD = ((final & 0b0000000000111111)<<2); 
 		PORTB = ((final & 0b0000000011000000)>>6);
