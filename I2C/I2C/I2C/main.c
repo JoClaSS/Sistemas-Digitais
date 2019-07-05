@@ -5,65 +5,79 @@
  * Author : José
  */
 #define F_CPU 16000000UL
-#define F_SCL 10000000UL
-#define PRESCALE 1
-#define TWBR_val ((((F_CPU/F_SCL)/PRESCALE) - 16)/2)
 #include <avr/io.h>
 #include <util/delay.h>
-#include <util/twi.h>
+//#include <util/twi.h>
 
 
-void i2c_init(){
-	DDRC = (1<<PINC5)|(1<<PINC4);
-	TWBR = (uint8_t)TWBR_val;
-	_delay_ms(10);
+void initI2C(){
+	//set SCL to 400kHz
+	TWSR = 0x00;
+	TWBR = 0x0C;
+	TWCR = (1<<TWEN);
+}	
+
+void startI2C()
+{
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
 }
 
-uint8_t i2c_start(uint8_t address){
-	TWCR = 0;
-	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);	
-	while(!(TWCR &  (1<<TWINT))){};
-  	if((TWSR & 0xF8) != TW_START){ return 1;}
-	TWDR = address;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR &  (1<<TWINT))){};
-	uint8_t twst = TW_START & 0xF8;
-	if((twst != TW_MT_SLA_ACK) && (twst != TW_MR_SLA_ACK)) return 1;
+void stopI2C()
+{
+	TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+}
+
+void I2Cwrite(uint8_t u8data)
+{
+	TWDR = u8data;
+	TWCR = (1<<TWINT)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+}
+
+uint8_t I2Cread(){
+	TWCR = (1<<TWINT)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+	if(TWSR == 0x40){ 
+	return TWDR;
+	}
+	else
 	return 0;
 }
-
-uint8_t i2c_write(uint8_t data){
-	TWDR = data;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR &  (1<<TWINT))){};
-	if((TWSR & 0xF8) != TW_MT_SLA_ACK)return 1;
-	return 0;
+uint8_t I2CACK(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+	while ((TWCR & (1<<TWINT)) == 0);
+	return TWDR;
 }
 
-void i2c_stop(void){
-	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
+uint8_t I2CNACK(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+	return TWDR;
 }
 
-int main(void){
-	i2c_init();
+void MasterTransmitter(uint8_t addr_s, uint8_t data_s){
+		  initI2C();
+		  startI2C();
+		  I2Cwrite(addr_s);
+		  I2Cwrite(data_s);
+		  stopI2C();
+		  _delay_ms(1);
+}
+
+/*void MasterReceived(){
+	initI2C();
+	startI2C();
+	I2Cread();
+	I2Cwrite();
+	stopI2C();
+	_delay_ms(1);
+} */
+
+int main(){
 	while(1){
-		i2c_start(0x01);
-		i2c_write(15);
-		i2c_stop();
-		_delay_ms(1);
+		
 	}
 }
-
-
-/*
-uint8_t i2c_read_ack(void){
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);
-	while(!(TWCR &  (1<<TWINT)));
-	return TWDR;
-}
-
-uint8_t i2c_read_nack(void){
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR &  (1<<TWINT)));
-	return TWDR;
-} */

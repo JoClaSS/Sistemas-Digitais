@@ -3,29 +3,29 @@ I2C.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000016e  2**0
+  0 .data         00000000  00800100  00800100  000000da  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000011a  00000000  00000000  00000054  2**1
+  1 .text         00000086  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000016e  2**0
+  2 .comment      00000030  00000000  00000000  000000da  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001a0  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000010c  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000040  00000000  00000000  000001e0  2**0
+  4 .debug_aranges 00000060  00000000  00000000  0000014c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000080d  00000000  00000000  00000220  2**0
+  5 .debug_info   00000839  00000000  00000000  000001ac  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000071b  00000000  00000000  00000a2d  2**0
+  6 .debug_abbrev 00000746  00000000  00000000  000009e5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000330  00000000  00000000  00001148  2**0
+  7 .debug_line   000003b7  00000000  00000000  0000112b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000064  00000000  00000000  00001478  2**2
+  8 .debug_frame  000000b0  00000000  00000000  000014e4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003c5  00000000  00000000  000014dc  2**0
+  9 .debug_str    000003ed  00000000  00000000  00001594  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000a2  00000000  00000000  000018a1  2**0
+ 10 .debug_loc    000000fa  00000000  00000000  00001981  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000048  00000000  00000000  00001943  2**0
+ 11 .debug_ranges 00000050  00000000  00000000  00001a7b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,122 +65,23 @@ Disassembly of section .text:
   6e:	d8 e0       	ldi	r29, 0x08	; 8
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
-  74:	0e 94 77 00 	call	0xee	; 0xee <main>
-  78:	0c 94 8b 00 	jmp	0x116	; 0x116 <_exit>
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 41 00 	jmp	0x82	; 0x82 <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000080 <i2c_init>:
-	if((TWSR & 0xF8) != TW_MT_SLA_ACK)return 1;
-	return 0;
-}
+00000080 <main>:
+	I2Cwrite();
+	stopI2C();
+	_delay_ms(1);
+} */
 
-void i2c_stop(void){
-	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
-  80:	80 e3       	ldi	r24, 0x30	; 48
-  82:	87 b9       	out	0x07, r24	; 7
-  84:	88 ef       	ldi	r24, 0xF8	; 248
-  86:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7e00b8>
-  8a:	8f e3       	ldi	r24, 0x3F	; 63
-  8c:	9c e9       	ldi	r25, 0x9C	; 156
-  8e:	01 97       	sbiw	r24, 0x01	; 1
-  90:	f1 f7       	brne	.-4      	; 0x8e <i2c_init+0xe>
-  92:	00 c0       	rjmp	.+0      	; 0x94 <i2c_init+0x14>
-  94:	00 00       	nop
-  96:	08 95       	ret
+int main(){
+  80:	ff cf       	rjmp	.-2      	; 0x80 <main>
 
-00000098 <i2c_start>:
-  98:	ec eb       	ldi	r30, 0xBC	; 188
-  9a:	f0 e0       	ldi	r31, 0x00	; 0
-  9c:	10 82       	st	Z, r1
-  9e:	94 ea       	ldi	r25, 0xA4	; 164
-  a0:	90 83       	st	Z, r25
-  a2:	90 81       	ld	r25, Z
-  a4:	99 23       	and	r25, r25
-  a6:	ec f7       	brge	.-6      	; 0xa2 <i2c_start+0xa>
-  a8:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
-  ac:	98 7f       	andi	r25, 0xF8	; 248
-  ae:	98 30       	cpi	r25, 0x08	; 8
-  b0:	51 f4       	brne	.+20     	; 0xc6 <i2c_start+0x2e>
-  b2:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
-  b6:	84 e8       	ldi	r24, 0x84	; 132
-  b8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
-  bc:	ec eb       	ldi	r30, 0xBC	; 188
-  be:	f0 e0       	ldi	r31, 0x00	; 0
-  c0:	80 81       	ld	r24, Z
-  c2:	88 23       	and	r24, r24
-  c4:	ec f7       	brge	.-6      	; 0xc0 <i2c_start+0x28>
-  c6:	81 e0       	ldi	r24, 0x01	; 1
-  c8:	08 95       	ret
+00000082 <_exit>:
+  82:	f8 94       	cli
 
-000000ca <i2c_write>:
-  ca:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
-  ce:	84 e8       	ldi	r24, 0x84	; 132
-  d0:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
-  d4:	ec eb       	ldi	r30, 0xBC	; 188
-  d6:	f0 e0       	ldi	r31, 0x00	; 0
-  d8:	80 81       	ld	r24, Z
-  da:	88 23       	and	r24, r24
-  dc:	ec f7       	brge	.-6      	; 0xd8 <i2c_write+0xe>
-  de:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
-  e2:	98 7f       	andi	r25, 0xF8	; 248
-  e4:	81 e0       	ldi	r24, 0x01	; 1
-  e6:	98 31       	cpi	r25, 0x18	; 24
-  e8:	09 f4       	brne	.+2      	; 0xec <i2c_write+0x22>
-  ea:	80 e0       	ldi	r24, 0x00	; 0
-  ec:	08 95       	ret
-
-000000ee <main>:
-}
-
-int main(void){
-	i2c_init();
-  ee:	0e 94 40 00 	call	0x80	; 0x80 <i2c_init>
-	if((TWSR & 0xF8) != TW_MT_SLA_ACK)return 1;
-	return 0;
-}
-
-void i2c_stop(void){
-	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
-  f2:	0c eb       	ldi	r16, 0xBC	; 188
-  f4:	10 e0       	ldi	r17, 0x00	; 0
-  f6:	c4 e9       	ldi	r28, 0x94	; 148
-}
-
-int main(void){
-	i2c_init();
-	while(1){
-		i2c_start(0x01);
-  f8:	81 e0       	ldi	r24, 0x01	; 1
-  fa:	0e 94 4c 00 	call	0x98	; 0x98 <i2c_start>
-		i2c_write(15);
-  fe:	8f e0       	ldi	r24, 0x0F	; 15
- 100:	0e 94 65 00 	call	0xca	; 0xca <i2c_write>
-	if((TWSR & 0xF8) != TW_MT_SLA_ACK)return 1;
-	return 0;
-}
-
-void i2c_stop(void){
-	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
- 104:	f8 01       	movw	r30, r16
- 106:	c0 83       	st	Z, r28
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 108:	8f e9       	ldi	r24, 0x9F	; 159
- 10a:	9f e0       	ldi	r25, 0x0F	; 15
- 10c:	01 97       	sbiw	r24, 0x01	; 1
- 10e:	f1 f7       	brne	.-4      	; 0x10c <main+0x1e>
- 110:	00 c0       	rjmp	.+0      	; 0x112 <main+0x24>
- 112:	00 00       	nop
- 114:	f1 cf       	rjmp	.-30     	; 0xf8 <main+0xa>
-
-00000116 <_exit>:
- 116:	f8 94       	cli
-
-00000118 <__stop_program>:
- 118:	ff cf       	rjmp	.-2      	; 0x118 <__stop_program>
+00000084 <__stop_program>:
+  84:	ff cf       	rjmp	.-2      	; 0x84 <__stop_program>
